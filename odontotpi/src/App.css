@@ -1,0 +1,166 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+section {
+  color: #fff;
+  background-color: #ffffffb0;
+  height: 100vh;  
+}
+.navBg {
+  background-color: #3c6ae7;
+  box-shadow: 0px 8px 8px -6px rgba(0,0,0,.5);
+}
+
+.navbar-img {
+  max-height: 50px;
+}
+
+.bg-table{
+  background-color: #3c6ae7;
+}
+
+.info-paciente{
+  background-color: #3c6ae7;
+  border-radius: 15px;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+.text-paciente{
+  padding-top: 100px;
+}
+
+.profile-pic{
+  max-width: 200px;
+  margin-top: 20px;
+}
+
+.diags-container{
+  max-width: 1000px;
+  
+  border-radius: 500px;
+}
+
+.bg-diags{
+  background-color: #fff;
+}
+
+.bg-hdiags{
+  background-color: #06226d;
+}
+
+.nd-button{
+  margin-bottom: 10px;
+  float: right;
+  background-color: #06226d;
+}
+
+.diags-table{
+  max-width: 1000px;
+  align-items: center;
+}
+
+.search-bar{
+  max-width: 35%;
+  margin-left: 1%;
+}
+
+.main {
+  width: 50%;
+  margin: 50px auto;
+}
+
+.form-group .form-control {
+  padding-left: 2.375rem;
+}
+
+.form-group .form-control-icon {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+.comment-form-textarea {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  border: 1px solid rgb(76, 96, 139);
+}
+
+.comment-form-button {
+  font-size: 16px;
+  padding: 8px 16px;
+  background: rgb(59, 130, 246);
+  border-radius: 8px;
+  color: white;
+  border-color: #ffffff;
+}
+
+.centered {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.img-home{
+  filter: blur(3px);
+  width: 100%;
+  aspect-ratio: 3 / 1;
+}
+
+.container-home{
+  min-width: 100%;
+}
+
+.title-home{
+  -webkit-text-fill-color: rgb(255, 255, 255);
+  -webkit-text-stroke-color:#000000;
+  -webkit-text-stroke-width: 2.00px; 
+  font-family: system-ui;
+}
