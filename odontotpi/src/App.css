@@ -161,6 +161,68 @@ section {
 .title-home{
   -webkit-text-fill-color: rgb(255, 255, 255);
   -webkit-text-stroke-color:#000000;
-  -webkit-text-stroke-width: 2.00px; 
-  font-family: system-ui;
+  -webkit-text-stroke-width: 1.50px; 
+  font-family: fantasy;
+}
+
+.fomr-add{
+  align-items: center;
+}
+
+.add-paciente{
+  background-color: #3c6ae7;
+  border-radius: 15px;
+  min-height: 500px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+}
+
+.audun_warn {
+  color: #ffffff;
+  background-color: #FF8080;
+  font-family: 'Source Sans Pro', sans-serif;
+  border-radius:.5em;
+  border: 1px solid;
+  margin: 5px 0px;
+  padding:12px;
+  width: 400px;
+}
+
+.fa-exclamation-triangle:before{
+  margin-right:10px;
+}
+
+.success-added {
+  color: #ffffff;
+  background-color: #50ba30;
+  font-family: 'Source Sans Pro', sans-serif;
+  border-radius:.5em;
+  border: 1px solid;
+  margin: 5px 0px;
+  padding:12px;
+  width: 400px;
+}
+
+.unsuccess-added {
+  color: #ffffff;
+  background-color: #eb3030;
+  font-family: 'Source Sans Pro', sans-serif;
+  border-radius:.5em;
+  border: 1px solid;
+  margin: 5px 0px;
+  padding:12px;
+  width: 400px;
+}
+
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+
+.label-add{
+  width: 400px;
+}
+
+.confirm-delete{
+  background-color: #eb3030;
 }

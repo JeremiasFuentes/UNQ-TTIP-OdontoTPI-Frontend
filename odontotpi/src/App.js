@@ -6,6 +6,8 @@ import Inicio from './components/inicio';
 import Pacientes from './components/pacientes';
 import NavBarHeader from './layouts/navbar';
 import Paciente from './components/paciente';
+import NuevoPaciente from './components/nuevoPaciente';
+import EditPaciente from './components/editPaciente';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
     <Route path='Inicio' element={ <Inicio /> } />
     <Route path='Pacientes' element={ <Pacientes /> } />
     <Route path="/paciente" element={<Paciente />} />
+    <Route path="/pacientes/nuevo" element={<NuevoPaciente />} />
+    <Route path="/paciente/edit" element={<EditPaciente />} />
   </Route>
 </Routes> 
 </BrowserRouter>
