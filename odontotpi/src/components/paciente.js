@@ -37,6 +37,7 @@ const Paciente = () => {
         .then((response) => {
             console.log(response)
             setDiags(response.data.diags)
+            setText("")
         })
 
         
