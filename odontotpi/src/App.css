@@ -226,3 +226,72 @@ section {
 .confirm-delete{
   background-color: #eb3030;
 }
+
+
+
+.trapezoid{
+  width: 90px;
+  height: 30px;
+  background: var(--lado-color, white);
+  transform: perspective(3.5px) rotateX(3.5deg);
+  rotate: 180deg;
+  margin: 50px;
+}
+
+.odontograma{
+  position: relative;
+}
+
+.odontograma > * {
+  position: absolute;
+}
+
+.square {
+  height: 70px;
+  width: 70px;
+  background-color: var(--lado-color, white);
+}
+
+.rectangle {
+  height: 20px;
+  width: 150px;
+  background-color: blue;
+}
+
+.asd{
+  position:"relative";
+  top:"-440px";
+  right:"55px"
+}
+
+.circle{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 10px;
+  border-color: rgb(0, 4, 255);
+  background-color: rgba(0, 0, 0, 0);
+  pointer-events:none;
+}
+
+.drop{
+  position: absolute;
+  margin-top: 30%;
+}
+
+.gridO{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto;
+  padding: 10px;
+  column-gap: 0px;
+}
+
+.saveOdont {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 2%;
+  margin-right: 2%;
+}
+

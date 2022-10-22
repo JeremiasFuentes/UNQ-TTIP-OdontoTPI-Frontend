@@ -64,7 +64,7 @@ const EditPaciente = () => {
     }
 
     const pacienteNoAgregado = () => {
-        setPacienteAgregado(<div className="success-added" data-test="success-added">
+        setPacienteAgregado(<div className="unsuccess-added" data-test="success-added">
                         <i aria-hidden="true"/>
                             El Paciente no pudo ser Actualizado
                     </div>)
@@ -198,7 +198,7 @@ const EditPaciente = () => {
                     </div>
                 </div>
                 <button className="comment-form-button mb-2 mt-3">
-                    Agregar Paciente
+                    Actualizar Paciente
                 </button>
                 </form>
                 

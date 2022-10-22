@@ -52,7 +52,7 @@ const NuevoPaciente = () => {
     }
 
     const pacienteNoAgregado = () => {
-        setPacienteAgregado(<div className="success-added" data-test="success-added">
+        setPacienteAgregado(<div className="unsuccess-added" data-test="success-added">
                         <i aria-hidden="true"/>
                             Paciente no Creado
                     </div>)
