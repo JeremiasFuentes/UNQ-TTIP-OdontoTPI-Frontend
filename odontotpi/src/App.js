@@ -8,6 +8,7 @@ import NavBarHeader from './layouts/navbar';
 import Paciente from './components/paciente';
 import NuevoPaciente from './components/nuevoPaciente';
 import EditPaciente from './components/editPaciente';
+import Odontograma from './components/odontograma';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
     <Route path="/paciente" element={<Paciente />} />
     <Route path="/pacientes/nuevo" element={<NuevoPaciente />} />
     <Route path="/paciente/edit" element={<EditPaciente />} />
+    <Route path="/paciente/odontograma" element={<Odontograma />} />
   </Route>
 </Routes> 
 </BrowserRouter>

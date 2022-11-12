@@ -3,7 +3,10 @@ import UseQuery from './useSearch';
 import profile from '../images/profile-image-default.png';
 import '../App.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const Paciente = () => {
+    const navigate = useNavigate();
+
     const [legajo, setLegajo] = useState("")
     const [nombre ,  setNombre] = useState("")
     const [apellido ,  setApellido] = useState("")
@@ -43,9 +46,16 @@ const Paciente = () => {
         
     }
 
+    const handleClick = () => {
+        navigate("/paciente/odontograma?q="+legajo);
+    }
+
     return(
         <div>
             <h1 className="text-dark mt-3">Ficha de Paciente</h1>
+            <button className="comment-form-button mb-2" onClick={() =>handleClick()}>
+                    Odontograma
+            </button>
             <div className="container mt-2 info-paciente">
                 <img src={profile} className='profile-pic'/>
                 <p><bold className='text-light mt-3'>Nombre: {nombre}</bold></p>

@@ -104,9 +104,9 @@ const Pacientes = () => {
                             <td>{paciente.dni}</td>
                             <td>
                                 <div className="btn-group">
-                                    <button type="button" class="btn btn-secondary" onClick={() =>handleClick(paciente.legajo)}><img src={vIcon} width="30" height="20"/></button>
-                                    <button type="button" class="btn btn-success"><img src={eIcon} onClick={() =>handleClickEdit(paciente.legajo)} width="30" height="20"/></button>
-                                    <button type="button" class="btn btn-danger" onClick={() => submitDelete(paciente.legajo)}><img src={dIcon} width="30" height="20"/></button>
+                                    <button type="button" class="btn btn-light" onClick={() =>handleClick(paciente.legajo)}><img src={vIcon} width="30" height="25"/></button>
+                                    <button type="button" class="btn btn-light"><img src={eIcon} onClick={() =>handleClickEdit(paciente.legajo)} width="30" height="30"/></button>
+                                    <button type="button" class="btn btn-light" onClick={() => submitDelete(paciente.legajo)}><img src={dIcon} width="30" height="30"/></button>
                                 </div>
                             </td>
                         </tr>
