@@ -5,13 +5,16 @@ import Extraccion from './extraccion';
 import Faltante from './faltante';
 import Conducto from './conducto';
 
-const PiezaDentaria = ({pieza, onChangePieza, onChangePiezaNormal}) => {
+const PiezaDentaria = ({pieza, onChangePieza, onChangePiezaNormal, onClickMessage}) => {
     const [tratamiento,setTratamiento] = useState(pieza.tipo)
     const [diente,setDiente] = useState("")
     const [diente2,setDiente2] = useState("")
+
     
 
-    useEffect(() => {setDiente(pieza)},[]);
+    useEffect(() => {
+        setDiente(pieza)
+    },[]);
 
     const handleChange = (tipo) =>{
         setTratamiento(tipo)
@@ -21,6 +24,10 @@ const PiezaDentaria = ({pieza, onChangePieza, onChangePiezaNormal}) => {
 
     const onChangeTratamientos = (lado,color) =>{
         onChangePiezaNormal(pieza.id,lado,color)
+    }
+
+    const handleClickMessage = (e) =>{
+        onClickMessage(pieza.id)
     }
     
     return(
@@ -55,6 +62,10 @@ const PiezaDentaria = ({pieza, onChangePieza, onChangePiezaNormal}) => {
                     <li><a class="dropdown-item" onClick={() => handleChange('Faltante') }>Faltante</a></li>
                     <li><a class="dropdown-item" onClick={() => handleChange('Conducto') }>Tratamiento de Conducto</a></li>
                 </ul>
+
+                <button class="btn btn-secondary" type="button" onClick={handleClickMessage}>
+                <i class="fa fa-commenting" aria-hidden="true"></i>
+                </button>
             </div>
             </div>
         

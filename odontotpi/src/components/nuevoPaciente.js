@@ -16,7 +16,9 @@ const NuevoPaciente = () => {
         dni: "",
         tel:"",
         mail:"",
-        diags: []
+        domicilio:"",
+        diags: [],
+        adulto: false
     })
 
     const handleSubmit = (event) =>{
@@ -33,11 +35,13 @@ const NuevoPaciente = () => {
                     dni: "",
                     tel:"",
                     mail:"",
-                    diags: []
+                    domicilio:"",
+                    diags: [],
+                    adulto: false
                 })
                 //navigate("/paciente?q="+response.data.legajo);
             })
-            .catch(pacienteNoAgregado())
+            .catch(err => pacienteNoAgregado())
         }
         catch{}
 
@@ -62,11 +66,12 @@ const NuevoPaciente = () => {
         const newData = {...data}
         newData[e.target.id] =e.target.value
         setData(newData)
+        console.log(data)
     }
 
     const handleSubmitField = (event) => {
         Object.getOwnPropertyNames(data).forEach(function(val, index, array){
-            if(data[val] == '' && val != 'diags'){
+            if(data[val] == '' && val != 'diags' && val != 'adulto'){
                 setTrySave(true)
                 throw new Error(`error de campo vacio ${val}`);
             }
@@ -97,12 +102,19 @@ const NuevoPaciente = () => {
         validateEmail(e.target.value)
     }
 
+    const toggleChecked = (e) => {
+        const newData = {...data}
+        newData[e.target.id] = !data.adulto
+        setData(newData)
+        console.log(data)
+    };
+
 
     return(
         <div>
             <h1 className="text-dark mt-3">Nuevo Paciente</h1>
             <div className="container mt-2 add-paciente">
-                <form className='form-add' onSubmit={handleSubmit}>
+                <form className='form-add' onSubmit={handleSubmit} data-testid="submit">
                 <img src={profile} className='profile-pic'/>
                 <div class="form-row">
                     <div class="form-group col-md-20 mt-3 label-add">
@@ -165,28 +177,51 @@ const NuevoPaciente = () => {
                         </div>
                     )}
                     <div class="form-group col-md-20">
+                    <label for="Domicilio">Domicilio</label>
+                    <input type="text" class="form-control" placeholder="Domicilio"
+                    value={data.domicilio}
+                    id = "domicilio"
+                    onChange={(e) => handleChange(e)}
+                    onSubmit={handleSubmitField}
+                    />
+                    </div>
+                    { trySave && (!data.domicilio) && (
+                        <div class="audun_warn">
+                            <i class="fa fa-exclamation-triangle" aria-hidden="true"/>
+                            El campo "Domicilio" no puede estar vacío
+                        </div>
+                    )}
+                    <div class="form-group col-md-20">
                     <label for="Mail">Mail</label>
                     <input type="text" class="form-control" placeholder="Mail"
                     value={data.mail}
+                    data-testid="mail"
                     id = "mail"
                     onChange={(e) => handleChangeMail(e)}
                     onSubmit={handleSubmitField}
                     />
                     { trySave && (!data.mail) && (
-                        <div class="audun_warn" data-test="fail-title">
+                        <div class="audun_warn" >
                             <i class="fa fa-exclamation-triangle" aria-hidden="true"/>
                             El campo "Mail" no puede estar vacío
                         </div>
                     )}
                     { mailError && (
-                        <div class="audun_warn">
-                            <i class="fa fa-exclamation-triangle" aria-hidden="true"/>
+                        <div class="audun_warn" >
+                            <i class="fa fa-exclamation-triangle" aria-hidden="true" data-testid="fail-mail"/>
                             No es un mail valido
                         </div>
                     )}
                     </div>
+
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+                    <div class="form-check form-switch tipoPaciente">
+                        <input class="form-check-input" type="checkbox" id="adulto" checked={data.adulto} onChange={(e) => toggleChecked(e)}/>
+                        <label class="form-check-label checkAdulto" for="flexSwitchCheckChecked">Adulto</label>
+                    </div>
+
                 </div>
-                <button className="comment-form-button mb-2 mt-3">
+                <button className="comment-form-button mb-2 mt-3" data-testid="boton-submit">
                     Agregar Paciente
                 </button>
                 </form>

@@ -24,7 +24,9 @@ const EditPaciente = () => {
         dni: "",
         tel:"",
         mail:"",
-        diags: []
+        domicilio:"",
+        diags: [],
+        adulto: false
     })
 
     useEffect(() => {getPaciente()},[]);
@@ -34,7 +36,7 @@ const EditPaciente = () => {
 		const data1 = await fetch(`http://localhost:8080/paciente/`+ (query.toString().replace('q=', '')));
 		const data2 = await data1.json();
         setData(data2)
-        console.log(data)
+        console.log(data2)
 		
     }
 
@@ -49,7 +51,7 @@ const EditPaciente = () => {
                 pacienteSiAgregado()
                 //navigate("/paciente?q="+response.data.legajo);
             })
-            .catch(pacienteNoAgregado())
+            .catch(err => pacienteNoAgregado())
         }
         catch{}
 
@@ -78,7 +80,7 @@ const EditPaciente = () => {
 
     const handleSubmitField = (event) => {
         Object.getOwnPropertyNames(data).forEach(function(val, index, array){
-            if(data[val] == '' && val != 'diags' && val != 'legajo'){
+            if(data[val] == '' && val != 'diags' && val != 'legajo' && val != 'adulto'){
                 setTrySave(true)
                 throw new Error(`error de campo vacio ${val}`);
             }
@@ -108,6 +110,13 @@ const EditPaciente = () => {
         setData(newData)
         validateEmail(e.target.value)
     }
+
+    const toggleChecked = (e) => {
+        const newData = {...data}
+        newData[e.target.id] = e.target.checked
+        setData(newData)
+        console.log(newData)
+    };
 
     return(
         <div >
@@ -176,6 +185,21 @@ const EditPaciente = () => {
                         </div>
                     )}
                     <div class="form-group col-md-20">
+                    <label for="Domicilio">Domicilio</label>
+                    <input type="text" class="form-control" placeholder="Domicilio"
+                    value={data.domicilio}
+                    id = "domicilio"
+                    onChange={(e) => handleChange(e)}
+                    onSubmit={handleSubmitField}
+                    />
+                    </div>
+                    { trySave && (!data.domicilio) && (
+                        <div class="audun_warn">
+                            <i class="fa fa-exclamation-triangle" aria-hidden="true"/>
+                            El campo "Domicilio" no puede estar vacío
+                        </div>
+                    )}
+                    <div class="form-group col-md-20">
                     <label for="Mail">Mail</label>
                     <input type="text" class="form-control" placeholder="Mail"
                     value={data.mail}
@@ -196,6 +220,13 @@ const EditPaciente = () => {
                         </div>
                     )}
                     </div>
+
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+                    <div class="form-check form-switch tipoPaciente">
+                        <input class="form-check-input" type="checkbox" id="adulto" checked={data.adulto} onChange={(e) => toggleChecked(e)}/>
+                        <label class="form-check-label checkAdulto" for="flexSwitchCheckChecked">Adulto</label>
+                    </div>
+
                 </div>
                 <button className="comment-form-button mb-2 mt-3">
                     Actualizar Paciente

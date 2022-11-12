@@ -13,6 +13,7 @@ const Paciente = () => {
     const [dni ,  setDni] = useState("")
     const [tel ,  setTel] = useState("")
     const [mail ,  setMail] = useState("")
+    const [domicilio ,  setDomicilio] = useState("")
     const [diags, setDiags] = useState([])
     const query = UseQuery();
 
@@ -30,6 +31,7 @@ const Paciente = () => {
         setDni(paciente.dni);
         setMail(paciente.mail);
         setTel(paciente.tel);
+        setDomicilio(paciente.domicilio)
         setDiags(paciente.diags)
     }
 
@@ -50,17 +52,25 @@ const Paciente = () => {
         navigate("/paciente/odontograma?q="+legajo);
     }
 
+    const handleClickHC = () => {
+        navigate("/paciente/historia-clinica?q="+legajo);
+    }
+
     return(
         <div>
             <h1 className="text-dark mt-3">Ficha de Paciente</h1>
             <button className="comment-form-button mb-2" onClick={() =>handleClick()}>
                     Odontograma
             </button>
+            <button className="comment-form-button mb-2" onClick={() =>handleClickHC()}>
+                    Historia Clinica
+            </button>
             <div className="container mt-2 info-paciente">
                 <img src={profile} className='profile-pic'/>
                 <p><bold className='text-light mt-3'>Nombre: {nombre}</bold></p>
                 <p><bold className='text-light'>Apellido: {apellido}</bold></p>
                 <p><bold className='text-light'>DNI: {dni}</bold></p>
+                <p><bold className='text-light'>Domicilio: {domicilio}</bold></p>
                 <p><bold className='text-light'>Telefono: {tel}</bold></p>
                 <p><bold className='text-light'>Mail: {mail}</bold></p>
                 <table className="table table-striped table-hover mt-5 shadow-lg">

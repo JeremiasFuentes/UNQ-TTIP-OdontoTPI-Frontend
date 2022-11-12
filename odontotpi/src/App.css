@@ -287,6 +287,13 @@ section {
   column-gap: 0px;
 }
 
+.gridO2{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  padding: 10px;
+  column-gap: 0px;
+}
+
 .saveOdont {
   position: fixed;
   bottom: 0;
@@ -295,3 +302,159 @@ section {
   margin-right: 2%;
 }
 
+.tipoPaciente{
+  margin-top: 3%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.checkAdulto{
+  margin-left: -80%;
+}
+
+
+
+.ladoIzquierdo{
+  display:-webkit-flex;
+    display:flex;
+    list-style-type:none;
+    padding:0;
+    justify-content:flex-end;
+}
+
+.ladoDerecho{
+  text-align: right;
+  padding-right: 3%;
+  padding-top: 1%;
+}
+
+.textoIzquierda{
+  margin-right: auto;
+  padding-left: 3%;
+}
+
+.textoDerecha{
+  margin-left: auto;
+  padding-right: 3%;
+}
+
+.arrow-button {
+  
+  display: flex;
+  color: #bde1f1;
+  background-color: #2f71f3;
+  padding: 10px 16px;
+  border-radius: 20px;
+  transition: all .3s ease;
+  font-weight: bold;
+  cursor: pointer;
+  align-items: center;
+  font-size: 14px;
+}
+
+.arrow-button > .arrow {
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid #bde1f1;
+  border-bottom: 2px solid #bde1f1;
+  position: relative;
+  transform: rotate(-45deg);
+  margin: 0 6px;
+  transition: all .3s ease;
+}
+
+.arrow-button > .arrow::before {
+  display: block;
+  background-color: currentColor;
+  width: 3px;
+  transform-origin: bottom right;
+  height: 2px;
+  position: absolute;
+  opacity: 0;
+  bottom: calc(-2px / 2);
+  transform: rotate(45deg);
+  transition: all .3s ease;
+  content: "";
+  right: 0;
+}
+
+.arrow-button:hover > .arrow {
+  transform: rotate(-45deg) translate(4px, 4px);
+  border-color: text-hover-color;
+}
+
+.arrow-button:hover > .arrow::before {
+  opacity: 1;
+  width: 8px;
+}
+
+.arrow-button:hover {
+  background-color: #251ed4;
+  color: #fff;
+}
+
+.margintop{
+  margin-top: 1%;
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.selectOdont{
+  max-width: 20%;
+  min-width: 20%;
+  margin-top: 1%;
+  margin-left: 40%;
+}
+
+.alertOdont{
+ 
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-left: 2%;
+  margin-right: 2%;
+
+}
+
+.numObs{
+  text-align: left;
+  margin-top: 2%;
+  margin-left: 3%;
+  margin-right: 10%;
+  margin-bottom: 3%;
+}
+
+.textareaObs {
+  width: 90%;
+  height: 100px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+.inlineObs{
+  display:-webkit-flex;
+  display:flex;
+  list-style-type:none;
+  padding:0;
+  justify-content:flex-end;
+}
+
+.labelCheck{
+  float:left;
+}
+
+.historia{
+  background-color: #3e5491;
+  border-radius: 15px;
+  min-height: 500px;
+  width: 800px;
+}
+
+.checkRight{
+  margin-left: 50%;
+}
