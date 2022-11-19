@@ -2,10 +2,13 @@ import '../App.css';
 import React, { useEffect, useState, onSubmit } from 'react';
 import UseQuery from './useSearch';
 import axios from 'axios';
+import '../styles/tail.css'
+import { useNavigate } from 'react-router-dom';
 
 const HistoriaClinica = () => {
 
     const query = UseQuery();
+    const navigate = useNavigate();
 
     const [data, setData] = useState({})
     const [historiaActualizado, setHistoriaActualizado] = useState(false)
@@ -59,6 +62,13 @@ const HistoriaClinica = () => {
 
         
         <div>
+            <div className='arrowBody'>
+            <div className='arrowBack'>
+                <a href="#" onClick={() => navigate(-1)}>
+                <span class="left"></span>
+                </a>
+            </div>
+            </div>
         <h1 className="text-dark mt-3">Historia Clinica</h1>
         <div className="container mt-2 historia">
         <form onSubmit={handleSubmit}>

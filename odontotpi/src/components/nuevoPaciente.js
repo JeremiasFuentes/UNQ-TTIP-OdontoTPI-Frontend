@@ -39,7 +39,7 @@ const NuevoPaciente = () => {
                     diags: [],
                     adulto: false
                 })
-                //navigate("/paciente?q="+response.data.legajo);
+                navigate("/pacientes");
             })
             .catch(err => pacienteNoAgregado())
         }

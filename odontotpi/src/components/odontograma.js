@@ -8,15 +8,19 @@ import PiezaDentaria from './piezaDentaria';
 import { useNavigate } from 'react-router-dom';
 import UseQuery from './useSearch';
 import axios from 'axios';
+import '../styles/tail.css'
 
 const Odontograma = () => {
 
   const query = UseQuery();
+  
+  const navigate = useNavigate();
 
   const [data, setData] = useState([])
   const [ladoIzquierdo, setLado] = useState(true)
   const [tipo , setTipo] = useState(false)
   const [dataFilter , setDataFilter] = useState([])
+  const [esAdulto, setEsAdulto] = useState(false)
 
   const [odontogramaActualizado, setOdontogramaActualizado] = useState(false)
   const [odontogramaNoActualizado, setOdontogramaNoActualizado] = useState(false)
@@ -35,6 +39,7 @@ const Odontograma = () => {
     const response2 = await fetch(`http://localhost:8080/paciente/`+ (query.toString().replace('q=', '')))
         const paciente = await response2.json()
         setTipo(paciente.adulto)
+        setEsAdulto(paciente.adulto)
         
     }
   
@@ -99,12 +104,28 @@ const Odontograma = () => {
 
     return(
       <div>
-        <div className='selectOdont'>
-          <select id="inputState" class="form-control" onChange={changeTipo.bind(this)}>
-            <option selected={tipo} value='adulto'>Odontograma de Adulto</option>
-            <option selected={!tipo} value='infante'>Odontograma de Infante</option>
-          </select>
-          </div>
+        <div className='arrowBody'>
+            <div className='arrowBack'>
+                <a href="#" onClick={() => navigate(-1)}>
+                <span class="left"></span>
+                </a>
+            </div>
+            </div>
+        {!esAdulto && 
+        (<div className='selectOdont'>
+        <select id="inputState" class="form-control" onChange={changeTipo.bind(this)}>
+          <option selected={tipo} value='adulto'>Odontograma de Adulto</option>
+          <option selected={!tipo} value='infante'>Odontograma de Infante</option>
+        </select>
+        </div>)
+        }
+        {esAdulto && 
+        (<div className='selectOdont'>
+          <h5 value='adulto' className='text-dark'>Odontograma de Adulto</h5>
+        
+        </div>)
+        }
+        
         {ladoIzquierdo && tipo && (
         <div>
           <div className='margintop'>

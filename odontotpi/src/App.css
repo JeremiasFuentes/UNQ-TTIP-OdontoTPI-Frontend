@@ -290,7 +290,7 @@ section {
 .gridO2{
   display: grid;
   grid-template-columns: auto auto auto auto auto;
-  padding: 10px;
+  padding: 0px;
   column-gap: 0px;
 }
 
@@ -457,4 +457,20 @@ section {
 
 .checkRight{
   margin-left: 50%;
+}
+
+.fileImage{
+  margin-left:25%;
+  margin-top: 7%;
+}
+
+.fileList{
+  display: flex;
+  align-items: center;
+}
+
+.fileCard{
+  display: inline-block;
+  cursor: pointer;
+  padding: 0.5%;
 }
