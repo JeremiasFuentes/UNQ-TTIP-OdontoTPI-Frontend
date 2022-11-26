@@ -87,12 +87,12 @@ const Odontograma = () => {
   const onClickMessage = (id) =>{
     const index = data.findIndex((obj => obj.id == id))
     const newDiente = data[index]
-    newDiente['observaciones'] = "hola"
+    newDiente['observaciones'] = "-"
     data[index] = newDiente
     setDataFilter(data.filter(d => d.observaciones != ''))
   }
 
-  const setText = (id , text) =>{
+  const setText = (id , text) =>{z
     const index = data.findIndex((obj => obj.id == id))
     const newDiente = data[index]
     newDiente['observaciones'] = text
