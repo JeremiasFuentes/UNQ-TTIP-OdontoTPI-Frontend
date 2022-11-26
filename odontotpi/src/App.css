@@ -45,7 +45,7 @@ section {
   height: 100vh;  
 }
 .navBg {
-  background-color: #3c6ae7;
+  background-color: #3e5491;
   box-shadow: 0px 8px 8px -6px rgba(0,0,0,.5);
 }
 
@@ -58,7 +58,7 @@ section {
 }
 
 .info-paciente{
-  background-color: #3c6ae7;
+  background-color: #3e5491;
   border-radius: 15px;
   min-height: 500px;
   overflow: hidden;
@@ -473,4 +473,26 @@ section {
   display: inline-block;
   cursor: pointer;
   padding: 0.5%;
+}
+
+.checkMail{
+  margin-right: 60%;
+}
+
+
+.sigCanvas{
+  border: 1px solid black;
+  width: 100%;
+  background-color: white;
+}
+
+.firma{
+  max-width: 50%;
+  min-height: 100%;
+}
+
+.homeStyle{
+  margin-left: 15%;
+  margin-right: 15%;
+  min-height: 50%;
 }

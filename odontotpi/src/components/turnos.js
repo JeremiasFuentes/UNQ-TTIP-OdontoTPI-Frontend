@@ -8,11 +8,11 @@ import { AutoCompleteComponent } from '@syncfusion/ej2-react-dropdowns';
 import "react-widgets/styles.css";
 import DropdownList from "react-widgets/DropdownList";
 import axios from 'axios';
-
+import emailjs from 'emailjs-com';
 import * as numberingSystems from '../../node_modules/cldr-data/supplemental/numberingSystems.json';
 import * as gregorian from '../../node_modules/cldr-data/main/es/ca-gregorian.json';
 import * as numbers from '../../node_modules/cldr-data/main/es/numbers.json';
-import * as timeZoneNames from '../../node_modules/cldr-data/main/de/timeZoneNames.json';
+import * as timeZoneNames from '../../node_modules/cldr-data/main/es/timeZoneNames.json';
 import * as weekData from 'cldr-data/supplemental/weekData.json';
 
 import { extend, loadCldr, L10n } from "@syncfusion/ej2-base";
@@ -149,7 +149,11 @@ L10n.load({
 
 const Turnos = () => {
 
-    
+ 
+
+    const [enviarMail, setEnviarMail] = useState(false)
+    const [turnoAgregado, setTurnoAgregado] = useState(false)
+    const [turnoNoAgregado, setTurnoNoAgregado] = useState(false)
 
     const [turnos , setTurnos] = useState([])
     const [pacientes, setPacientes] = useState([])
@@ -181,6 +185,7 @@ const Turnos = () => {
         const response = await fetch('http://localhost:8080/paciente/turnos')
         const data = await response.json()
         setTurnos(data)
+        console.log(data)
         const response2 = await fetch('http://localhost:8080/paciente')
         const data2 = await response2.json()
         setPacientes(data2)
@@ -190,6 +195,11 @@ const Turnos = () => {
     const selectdateStart = (e) =>{
         const newData = {...data}
         newData['startTime'] = e.value
+        
+        const datetime = new Date(e.value)
+        const newDate = new Date(datetime.setHours(datetime.getHours()+1))
+        console.log(newData)
+        newData['endTime'] = newDate
         setData(newData)
     }
 
@@ -209,23 +219,49 @@ const Turnos = () => {
     const handleSubmit = (event) =>{
         event.preventDefault()
         try{
-            console.log('http://localhost:8080/paciente/' + paciente.legajo + '/turno/save')
-            console.log(data)
+            const newData = {...data}
+            newData['startTime'] = new Date(data.startTime.setHours(data.startTime.getHours()-3))
+            newData['endTime'] = new Date(data.endTime.setHours(data.endTime.getHours()-3))
+            setData(newData)
             axios.post('http://localhost:8080/paciente/' + paciente.legajo + '/turno/save',data)
             .then((response) => {
+                if(enviarMail){sendEmail()}
                 setData({
                     subject : "",
                     startTime : "",
                     endTime : "",
                     description : ""
                 })
+                setEnviarMail(false)
                 showData()
+                setPaciente({})
+                setSearch('')
+                setTurnoAgregado(true)
             })
-            .catch()
+            .catch(err => setTurnoNoAgregado(true))
         }
-        catch{}
+        catch{setTurnoNoAgregado(true)}
 
         
+    }
+
+    const sendEmail = () => {
+  
+      emailjs.send('gmail', 'template_7989sd7', {
+        subject: "Aviso de Nuevo Turno",
+        message: "Hola " + data.subject + "\n \n" + "Se le ha asignado un nuevo turno el dia " +  new Date(data.startTime).toLocaleString() + "\n \nSaludos,\n OdontoTIP",
+        to: paciente.mail,
+        }, '1gEZ34KTxymRFv7vv')
+        .then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+    };
+
+    const handleCruz = () =>{
+      setTurnoAgregado(false)
+      setTurnoNoAgregado(false)
     }
 
 
@@ -234,11 +270,11 @@ const Turnos = () => {
             <button type="button" class="btn btn-primary mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Nuevo Turno
         </button>
-        <ScheduleComponent currentView='Week' eventSettings={{ dataSource: turnos} } firstDayOfWeek={1} locale="es">
+        <ScheduleComponent currentView='Week' firstDayOfWeek={1} locale="es" eventSettings={{ dataSource: turnos} } popupOpen={false}>
             <ViewsDirective>
-                <ViewDirective option='Day' startHour='09:00' endHour='20:00'></ViewDirective>    
-                <ViewDirective option='Week' startHour='09:00' endHour='20:00'></ViewDirective>  
-                <ViewDirective option='Month' startHour='09:00' endHour='20:00'></ViewDirective>  
+                <ViewDirective option='Day' startHour='09:00' endHour='20:00' locale="es"></ViewDirective>    
+                <ViewDirective option='Week' startHour='09:00' endHour='20:00' locale="es"></ViewDirective>  
+                <ViewDirective option='Month' startHour='09:00' endHour='20:00' locale="es"></ViewDirective>  
             </ViewsDirective> 
         <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
       </ScheduleComponent>  
@@ -252,7 +288,7 @@ const Turnos = () => {
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title text-danger" id="exampleModalLabel">Nuevo Turno</h5>
+            <h5 class="modal-title text-dark" id="exampleModalLabel">Nuevo Turno</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -268,14 +304,14 @@ const Turnos = () => {
                 <div className='control-panel'>
                 <div className='control-section'>
                     <div className='datetimepicker-control-section mt-3'>
-                        <DateTimePickerComponent id="datetimepicker" placeholder="Seleccionar Fecha y Hora de Inicio"  onChange={selectdateStart}></DateTimePickerComponent>
+                        <DateTimePickerComponent id="datetimepicker" placeholder="Seleccionar Fecha y Hora de Inicio"  onChange={selectdateStart} locale='es' value={data.startTime}></DateTimePickerComponent>
                     </div>
                 </div>
                 </div>
                 <div className='control-panel'>
                 <div className='control-section'>
                     <div className='datetimepicker-control-section mt-3'>
-                        <DateTimePickerComponent id="datetimepickerEnd" placeholder="Seleccionar Fecha y Hora de Final"  onChange={selectdateEnd}></DateTimePickerComponent>
+                        <DateTimePickerComponent id="datetimepickerEnd" placeholder="Seleccionar Fecha y Hora de Final"  onChange={selectdateEnd} locale='es' value={new Date(data.endTime)}></DateTimePickerComponent>
                     </div>
                 </div>
                 </div>
@@ -286,17 +322,37 @@ const Turnos = () => {
                     value={data.description}
                     onChange={(e) => setText(e.target.value)}
                 />
+                <div class="form-check checkMail mb-4 mt-3">
+                  <input class="form-check-input" type="checkbox" value={enviarMail} id="flexCheckDefault" onChange={()=> setEnviarMail(!enviarMail)}/>
+                  <label class="form-check-label" for="flexCheckDefault" className='text-dark'>
+                    Enviar aviso por mail
+                  </label>
+                </div>
 
-                <button type="submit" class="btn btn-primary" >Crear</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Crear</button>
             </form>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-warning" data-bs-dismiss="modal" >Cerrar</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cerrar</button>
             </div>
         </div>
         </div>
         </div>
         </div>
+        <div className='alertOdont'>
+        {turnoAgregado && (
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>Nuevo Turno Creado!</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={() => handleCruz()}></button>
+            </div>)
+            }
+          {turnoNoAgregado && (
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error! Turno no creado</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"  onClick={() => handleCruz()}></button>
+          </div>)
+          }
+          </div>
         </div>
     )
 }

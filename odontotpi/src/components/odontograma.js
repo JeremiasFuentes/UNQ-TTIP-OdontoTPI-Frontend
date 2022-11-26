@@ -92,7 +92,7 @@ const Odontograma = () => {
     setDataFilter(data.filter(d => d.observaciones != ''))
   }
 
-  const setText = (id , text) =>{z
+  const setText = (id , text) =>{
     const index = data.findIndex((obj => obj.id == id))
     const newDiente = data[index]
     newDiente['observaciones'] = text

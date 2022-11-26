@@ -282,7 +282,7 @@ const HistoriaClinica = () => {
                 <input class="form-check-input checkRight" type="checkbox" id="embarazada" checked={data.embarazada} onChange={(e) => setCheck(e)}/>
                 </div>
             </div>
-            <div class="col-sm-3 mt-2">
+            <div class="col-sm-3 mt-2 checkHC">
                 <div class="form-check">
                 <label class="form-check-label" for="gridCheck">
                     ¿Infecciones a Repetición?
@@ -292,18 +292,18 @@ const HistoriaClinica = () => {
             </div>
         </div>
 
-        <div class="form-group row mt-2 mb-3">
+        <div class="form-group row mt-3 mb-3">
             <label for="colFormLabel" class="col-sm-2 col-form-label ">Presión Arterial Máxima</label>
-            <input type="number" class="col-sm-1 form-control-sm" id="presionArterialMax" placeholder='mmHg' value={data.presionArterialMax} onChange={(e) => setTexto(e)}/>
+            <input type="number" class="col-sm-1 form-control-sm" id="presionArterialMax" placeholder='mmHg' value={data.presionArterialMax == 0? '' : data.presionArterialMax} onChange={(e) => setTexto(e)}/>
        
             <label for="colFormLabel" class="col-sm-2 col-form-label ">Presión Arterial Mínima</label>
-            <input type="number" class="col-sm-1 form-control-sm" id="presionArterialMin" placeholder='mmHg' value={data.presionArterialMin} onChange={(e) => setTexto(e)}/>
+            <input type="number" class="col-sm-1 form-control-sm" id="presionArterialMin" placeholder='mmHg' value={data.presionArterialMin == 0? '' : data.presionArterialMin} onChange={(e) => setTexto(e)}/>
 
             <label for="colFormLabel" class="col-sm-2 col-form-label ">Pulso</label>
-            <input type="number" class="col-sm-1 form-control-sm" id="pulso" placeholder='L.M' value={data.pulso} onChange={(e) => setTexto(e)}/>
+            <input type="number" class="col-sm-1 form-control-sm" id="pulso" placeholder='L.M' value={data.pulso ==0 ? '' : data.pulso} onChange={(e) => setTexto(e)}/>
 
-            <label for="colFormLabel" class="col-sm-2 col-form-label ">Frecuencia Respiratoria</label>
-            <input type="number" class="col-sm-1 form-control-sm" id="frecuenciaRespiratoria" placeholder='R.M' value={data.frecuenciaRespiratoria} onChange={(e) => setTexto(e)}/>
+            <label for="colFormLabel" class="col-sm-2 col-form-label" >Frecuencia Respiratoria</label>
+            <input type="number" class="col-sm-1 form-control-sm" id="frecuenciaRespiratoria" placeholder='R.M' value={data.frecuenciaRespiratoria== 0? '' : data.frecuenciaRespiratoria} onChange={(e) => setTexto(e)}/>
         </div>
 
 

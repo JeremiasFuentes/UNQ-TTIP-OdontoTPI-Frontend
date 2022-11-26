@@ -12,6 +12,7 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
     "cldr-data": "^36.0.1",
+    "emailjs-com": "^3.2.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-confirm-alert": "^3.0.6",
@@ -20,7 +21,9 @@
     "react-icons": "^4.6.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-signature-canvas": "^1.0.6",
     "react-widgets": "^5.8.4",
+    "reactjs-popup": "^2.0.5",
     "tailwind-scrollbar-hide": "^1.1.7",
     "web-vitals": "^2.1.4"
   },
