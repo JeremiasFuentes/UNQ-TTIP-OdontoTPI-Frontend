@@ -188,7 +188,7 @@ const Paciente = () => {
                 <p><bold className='text-light'>Telefono: {tel}</bold></p>
                 <p><bold className='text-light'>Mail: {mail}</bold></p>
           
-                <p><bold className='text-light'>Archivos:</bold></p>
+                <h4 className='text-light'>Archivos:</h4>
                 <div class="input-group">
                 <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Subir" onChange={(e) => subirArchivo(e.target.files) }/>
                 <button class="btn btn-outline-light" type="button" id="inputGroupFileAddon04" onClick={() => insertarArchivo()}>Subir</button>
@@ -207,7 +207,8 @@ const Paciente = () => {
                     </div>
                 ))}
                 </div>
-                <table className="table table-striped table-hover mt-4 shadow-lg">
+                <h4 className='text-light mt-3'>Consentimientos:</h4>
+                <table className="table table-striped table-hover shadow-lg">
                 <thead>
                     <tr className="bg-table text-white">
                         <th class="p-3">Fecha</th>

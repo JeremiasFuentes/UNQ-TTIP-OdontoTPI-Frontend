@@ -4,6 +4,8 @@ import Normal from './normal';
 import Extraccion from './extraccion';
 import Faltante from './faltante';
 import Conducto from './conducto';
+import Protesis from './protesis';
+import Corona from './corona';
 
 const PiezaDentaria = ({pieza, onChangePieza, onChangePiezaNormal, onClickMessage}) => {
     const [tratamiento,setTratamiento] = useState(pieza.tipo)
@@ -49,6 +51,14 @@ const PiezaDentaria = ({pieza, onChangePieza, onChangePiezaNormal, onClickMessag
                     
                     <Conducto></Conducto>
                 )}
+                { tratamiento == 'Protesis' && (
+                    
+                    <Protesis></Protesis>
+                )}
+                { tratamiento == 'Corona' && (
+                    
+                    <Corona></Corona>
+                )}
             </div>
             <div>
             <div className="dropdown drop">
@@ -61,6 +71,8 @@ const PiezaDentaria = ({pieza, onChangePieza, onChangePiezaNormal, onClickMessag
                     <li><a class="dropdown-item" onClick={() => handleChange('Extraccion')}>Extraccion</a></li>
                     <li><a class="dropdown-item" onClick={() => handleChange('Faltante') }>Faltante</a></li>
                     <li><a class="dropdown-item" onClick={() => handleChange('Conducto') }>Tratamiento de Conducto</a></li>
+                    <li><a class="dropdown-item" onClick={() => handleChange('Protesis') }>Protesis</a></li>
+                    <li><a class="dropdown-item" onClick={() => handleChange('Corona') }>Corona</a></li>
                 </ul>
 
                 <button class="btn btn-secondary" type="button" onClick={handleClickMessage}>
